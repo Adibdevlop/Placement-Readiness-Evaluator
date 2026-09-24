@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CareerLens AI estimates placement readiness and creates a focused preparation plan.">
+  <title>CareerLens AI — Placement Readiness Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="glow glow-one"></div><div class="glow glow-two"></div>
+  <header class="nav shell">
+    <a class="brand" href="/"><span>CL</span> CareerLens AI</a>
+    <a class="nav-link" href="#assessment">Take assessment</a>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <div>
+        <p class="eyebrow">ML-powered career intelligence</p>
+        <h1>Know how ready you are <em>before</em> the interview.</h1>
+        <p class="hero-copy">Turn your academics, skills and experience into one clear readiness score—with a practical plan for what to improve next.</p>
+        <a class="button" href="#assessment">Check my readiness <span>→</span></a>
+        <p class="micro">Free · No login · Takes about 2 minutes</p>
+      </div>
+      <div class="hero-card" aria-hidden="true">
+        <div class="mini-head"><span>Readiness snapshot</span><span class="live">Live analysis</span></div>
+        <div class="preview-score"><strong>78</strong><small>/100</small></div>
+        <div class="preview-label">Nearly Ready</div>
+        <div class="bars"><i style="--w:88%"></i><i style="--w:72%"></i><i style="--w:64%"></i></div>
+        <div class="mini-grid"><span>Coding <b>Strong</b></span><span>Projects <b>Improve</b></span></div>
+      </div>
+    </section>
+
+    <section class="trust shell">
+      <div><strong>10</strong><span>career signals</span></div>
+      <div><strong>0–100</strong><span>readiness score</span></div>
+      <div><strong>4</strong><span>priority actions</span></div>
+    </section>
+
+    <section id="assessment" class="assessment shell">
+      <div class="section-heading">
+        <p class="eyebrow">Your assessment</p>
+        <h2>Build your readiness profile</h2>
+        <p>Use honest current values—the recommendations are most useful when the inputs are realistic.</p>
+      </div>
+
+      <form id="predict-form" class="form-card">
+        <div class="form-section">
+          <div class="section-number">01</div><div><h3>Academics & aptitude</h3><p>Your foundational preparation.</p></div>
+        </div>
+        <div class="fields">
+          <label>CGPA <span>out of 10</span><input name="cgpa" type="number" min="0" max="10" step="0.01" value="8" required></label>
+          <label>Aptitude test score <span>out of 100</span><input name="aptitude_score" type="number" min="0" max="100" value="70" required></label>
+          <label>Weekly preparation <span>hours</span><input name="weekly_prep_hours" type="number" min="0" max="80" value="15" required></label>
+        </div>
+
+        <div class="form-section">
+          <div class="section-number">02</div><div><h3>Technical ability</h3><p>Evidence of coding and problem solving.</p></div>
+        </div>
+        <div class="fields">
+          <label>DSA questions solved <span>total</span><input name="dsa_questions" type="number" min="0" max="1000" value="180" required></label>
+          <label>Coding skill <span>1–10</span><input name="coding_skill" type="number" min="1" max="10" value="7" required></label>
+          <label>Completed projects <span>total</span><input name="projects" type="number" min="0" max="15" value="2" required></label>
+        </div>
+
+        <div class="form-section">
+          <div class="section-number">03</div><div><h3>Professional readiness</h3><p>How effectively you present your work.</p></div>
+        </div>
+        <div class="fields">
+          <label>Communication skill <span>1–10</span><input name="communication_skill" type="number" min="1" max="10" value="7" required></label>
+          <label>Internships <span>total</span><input name="internships" type="number" min="0" max="8" value="1" required></label>
+          <label>Mock interviews <span>completed</span><input name="mock_interviews" type="number" min="0" max="50" value="4" required></label>
+          <label>Resume score <span>out of 100</span><input name="resume_score" type="number" min="0" max="100" value="72" required></label>
+        </div>
+        <button id="submit-button" class="button submit" type="submit">Generate my CareerLens report <span>→</span></button>
+        <p id="form-error" class="error" role="alert"></p>
+      </form>
+
+      <section id="results" class="results hidden" aria-live="polite">
+        <div class="result-top">
+          <div class="score-ring"><span id="score">0</span><small>/100</small></div>
+          <div><p class="eyebrow">Your result</p><h2 id="level">Readiness level</h2><p>Your estimated placement readiness based on the profile you submitted.</p></div>
+        </div>
+        <div class="result-grid">
+          <article><h3>Priority action plan</h3><div id="recommendations"></div></article>
+          <article><h3>Model's top factors</h3><div id="factors"></div></article>
+        </div>
+        <p class="disclaimer">This is an educational estimate based on a synthetic training dataset—not a hiring guarantee or professional career assessment.</p>
+      </section>
+    </section>
+  </main>
+  <footer class="shell"><a class="brand" href="/"><span>CL</span> CareerLens AI</a><p>Built for smarter, focused placement preparation.</p></footer>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
+
